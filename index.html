@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WOFHRAD-SL | Women's Forum for Human Rights & Democracy</title>
+    <meta name="description" content="WOFHRAD-SL promotes and protects human rights, justice, and good governance in Sierra Leone — with women at the forefront of change since 2006.">
+
+    <!-- Open Graph / Social Preview -->
+    <meta property="og:title" content="WOFHRAD-SL | Women's Forum for Human Rights & Democracy">
+    <meta property="og:description" content="Championing women's rights and democracy in Sierra Leone since 2006.">
+    <meta property="og:type" content="website">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.475.0/dist/umd/lucide.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["DM Sans", "sans-serif"],
+                    },
+                    colors: {
+                        'primary-blue': '#1565C0',
+                        'primary-green': '#2E7D32',
+                        'light-blue': '#E3F2FD',
+                        'light-green': '#E8F5E9',
+                        'dark-navy': '#0D2B6B',
+                        'gold': '#F9A825',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- BUG FIX: `type="text/tailwindcss"` only works with the Vite Tailwind plugin.
+         With the CDN, @apply directives must go in a regular <style> tag. -->
+    <style>
+        body { font-family: "DM Sans", sans-serif; color: #0f172a; background: white; overflow-x: hidden; }
+        h1, h2, h3, h4 { font-family: "Playfair Display", serif; }
+
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: #2E7D32;
+            margin-bottom: 1rem;
+            display: inline-block;
+            position: relative;
+        }
+        .section-label::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: #F9A825;
+        }
+
+        .btn-pill {
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: inline-block;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #1565C0;
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #0D2B6B;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid white;
+            color: white;
+        }
+        .btn-outline:hover {
+            background-color: white;
+            color: #0D2B6B;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
+        }
+
+        .card-hover {
+            transition: all 0.5s;
+        }
+        .card-hover:hover {
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white py-4">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2019/08/cropped-wofhrad-sl-1.jpg?fit=512%2C512&ssl=1" alt="WOFHRAD-SL Logo" class="h-12 w-12 rounded-full border border-blue-700" referrerpolicy="no-referrer">
+                <div>
+                    <h1 class="text-xl font-bold text-blue-800 leading-tight" style="font-family: 'DM Sans', sans-serif;">WOFHRAD-SL</h1>
+                    <p class="text-[10px] sm:text-xs text-slate-600 font-medium italic">Women's Forum for Human Rights & Democracy — Sierra Leone</p>
+                </div>
+            </div>
+            <div class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-700">
+                <a href="#about" class="hover:text-blue-700 transition-colors">About</a>
+                <a href="#programs" class="hover:text-blue-700 transition-colors">Programs</a>
+                <a href="#impact" class="hover:text-blue-700 transition-colors">Impact</a>
+                <a href="#team" class="hover:text-blue-700 transition-colors">Team</a>
+                <a href="#contact" class="hover:text-blue-700 transition-colors">Contact</a>
+                <a href="#get-involved" class="btn-pill btn-primary py-2 text-xs">Get Involved</a>
+            </div>
+            <button id="menu-toggle" class="md:hidden text-blue-700" aria-label="Open menu">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-6 space-y-4 shadow-xl">
+            <a href="#about" class="block font-medium text-slate-700" onclick="closeMobileMenu()">About</a>
+            <a href="#programs" class="block font-medium text-slate-700" onclick="closeMobileMenu()">Programs</a>
+            <a href="#impact" class="block font-medium text-slate-700" onclick="closeMobileMenu()">Impact</a>
+            <a href="#team" class="block font-medium text-slate-700" onclick="closeMobileMenu()">Team</a>
+            <a href="#contact" class="block font-medium text-slate-700" onclick="closeMobileMenu()">Contact</a>
+            <a href="#get-involved" class="btn-pill btn-primary block w-full text-center" onclick="closeMobileMenu()">Get Involved</a>
+        </div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden" style="background-color: #0D2B6B;">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-20" style="background: radial-gradient(circle at center, #1565C0 0%, transparent 70%);"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 py-12 lg:py-24 grid lg:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <span class="inline-block px-4 py-1 rounded-full text-white text-xs font-bold tracking-widest uppercase mb-6 border border-white/20" style="background: rgba(255,255,255,0.1);">Est. 2006 · Sierra Leone</span>
+                <h2 class="text-4xl md:text-6xl font-black text-white leading-tight mb-6">Championing <span style="color: #F9A825;">Women's Rights</span> & Democracy in Sierra Leone</h2>
+                <p class="text-lg text-white/80 mb-10 max-w-xl leading-relaxed italic">"WOFHRAD-SL promotes and protects human rights, justice, and good governance — with women at the forefront of change, from communities to parliament."</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#programs" class="btn-pill btn-primary">Explore Our Work</a>
+                    <a href="#contact" class="btn-pill btn-outline">Partner With Us</a>
+                </div>
+            </div>
+            <div class="relative reveal" style="transition-delay: 200ms;">
+                <div class="rounded-2xl overflow-hidden shadow-2xl" style="border: 4px solid rgba(21,101,192,0.3);">
+                    <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/a00b6364-062b-4ade-9142-0d7c1f0465d9.jpg?resize=2048%2C1536&ssl=1" alt="WOFHRAD-SL team in the field" class="w-full h-auto" referrerpolicy="no-referrer">
+                </div>
+                <!-- Floating Stat Cards -->
+                <div class="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl z-20 items-center gap-4 border-l-4 border-blue-700 hidden sm:flex">
+                    <div class="p-2 rounded-lg text-blue-700" style="background: #E3F2FD;"><i data-lucide="users"></i></div>
+                    <div><p class="text-2xl font-black text-blue-700 leading-none">90</p><p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Safe Spaces for Girls</p></div>
+                </div>
+                <div class="absolute -top-6 -right-6 bg-white p-4 rounded-xl shadow-xl z-20 items-center gap-4 border-l-4 border-green-700 hidden sm:flex">
+                    <div class="p-2 rounded-lg text-green-700" style="background: #E8F5E9;"><i data-lucide="award"></i></div>
+                    <div><p class="text-2xl font-black text-green-700 leading-none">41</p><p class="text-[10px] font-bold uppercase tracking-wider text-slate-500">Women Elected</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Stats Bar -->
+    <section style="background-color: #1565C0;" class="py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+            <div class="reveal"><p class="text-4xl font-black mb-2" style="color: #F9A825;">2006</p><p class="text-xs font-bold text-white uppercase tracking-widest">Year Founded</p></div>
+            <div class="reveal" style="transition-delay: 100ms;"><p class="text-4xl font-black mb-2" style="color: #F9A825;">90</p><p class="text-xs font-bold text-white uppercase tracking-widest">Girls' Safe Spaces</p></div>
+            <div class="reveal" style="transition-delay: 200ms;"><p class="text-4xl font-black mb-2" style="color: #F9A825;">41</p><p class="text-xs font-bold text-white uppercase tracking-widest">Women Elected (2023)</p></div>
+            <div class="reveal" style="transition-delay: 300ms;"><p class="text-4xl font-black mb-2" style="color: #F9A825;">6+</p><p class="text-xs font-bold text-white uppercase tracking-widest">Districts Reached</p></div>
+        </div>
+    </section>
+
+    <!-- 4. About Section -->
+    <section id="about" class="py-24 overflow-hidden" style="background-color: #E3F2FD;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="relative reveal">
+                <div class="rounded-2xl overflow-hidden shadow-2xl z-10 relative">
+                    <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2025/11/306851839_142543091819246_862403406056836844_n.jpg" alt="WOFHRAD-SL team" class="w-full object-cover" style="height: 500px;" referrerpolicy="no-referrer">
+                </div>
+                <div class="absolute -bottom-10 -right-10 w-2/3 rounded-2xl overflow-hidden shadow-2xl z-20 hidden sm:block" style="border: 8px solid white;">
+                    <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/94f05763-c400-40b7-bcd7-e7dc00a6dcd3.jpg?resize=1024%2C768&ssl=1" alt="WOFHRAD-SL community work" class="w-full h-auto" referrerpolicy="no-referrer">
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <span class="section-label">Our Mission</span>
+                <h2 class="text-4xl font-black mb-8" style="color: #0D2B6B;">Promoting Justice & Inclusive Governance</h2>
+                <div class="space-y-6 text-slate-700 text-lg leading-relaxed mb-10">
+                    <p>Founded in 2006, WOFHRAD-SL emerged in the aftermath of Sierra Leone's civil war to address widespread abuses facing women — especially in rural communities where access to justice was blocked by culture and tradition in a male-dominated society.</p>
+                    <p>We strive to ensure the promotion and protection of human rights and justice, democracy, and good governance — with women leading change.</p>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Inclusivity & Diversity</div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Consultation</div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Accountability</div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Integrity</div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Proactivity</div>
+                    <div class="flex items-center gap-2 px-4 py-2 rounded-lg border text-sm font-bold" style="background: rgba(46,125,50,0.1); border-color: rgba(46,125,50,0.2); color: #2E7D32;">Transparency</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Programs Section -->
+    <section id="programs" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="section-label">Our Programs</span>
+                <h2 class="text-4xl font-black" style="color: #0D2B6B;">Initiatives for Change</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 card-hover reveal">
+                    <div class="overflow-hidden" style="height: 224px;">
+                        <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/fc993417-3127-4c3f-b370-15ea28fb9c96.jpg?resize=1024%2C768&ssl=1" alt="ICSP Women's Empowerment" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block w-fit" style="background: #E8F5E9; color: #2E7D32;">Bombali District</span>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #0D2B6B;">ICSP Women's Empowerment</h3>
+                        <p class="text-sm leading-relaxed mb-6 flex-grow text-slate-600">Working with women's networks through the Irish Civil Society Programme to advance women's rights in decision-making — through advocacy, leadership training, and capacity building.</p>
+                        <a href="https://wofhrad.com" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all" style="color: #1565C0;">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 card-hover reveal" style="transition-delay: 100ms;">
+                    <div class="overflow-hidden" style="height: 224px;">
+                        <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/bb332f66-d0fd-4711-9ec9-cf9463f9f552.jpg?resize=1008%2C477&ssl=1" alt="Girls Circle Collective" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block w-fit" style="background: #E8F5E9; color: #2E7D32;">Girls Aged 9–18</span>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #0D2B6B;">Girls Circle Collective</h3>
+                        <p class="text-sm leading-relaxed mb-6 flex-grow text-slate-600">Empowering out-of-school adolescent girls through 90 safe spaces across 8 chiefdoms in Bombali. Covering life skills, literacy, livelihoods, safeguarding, and protection.</p>
+                        <a href="https://wofhrad.com" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all" style="color: #1565C0;">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 card-hover reveal" style="transition-delay: 200ms;">
+                    <div class="overflow-hidden" style="height: 224px;">
+                        <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/1cd35625-fd15-480d-bb5a-90b2ab020759.jpg?resize=1024%2C768&ssl=1" alt="People to People Project" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block w-fit" style="background: #E8F5E9; color: #2E7D32;">Peacebuilding</span>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #0D2B6B;">People to People Project</h3>
+                        <p class="text-sm leading-relaxed mb-6 flex-grow text-slate-600">Preventing politically motivated violence by empowering women and youth (ages 20–35) as peacebuilders using Trócaire's "Planting the Seeds of Peace" methodology.</p>
+                        <a href="https://wofhrad.com" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all" style="color: #1565C0;">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 card-hover reveal">
+                    <div class="overflow-hidden" style="height: 224px;">
+                        <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/d4d41b55-31ad-4d6e-997d-0ccecd639ec0.jpg?resize=1024%2C768&ssl=1" alt="Gender Equality & Social Accountability" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block w-fit" style="background: #E8F5E9; color: #2E7D32;">Civil Society</span>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #0D2B6B;">Gender Equality & Social Accountability</h3>
+                        <p class="text-sm leading-relaxed mb-6 flex-grow text-slate-600">Strengthening civil society to promote gender equality and hold duty-bearers accountable for service delivery that captures the needs and aspirations of women and girls.</p>
+                        <a href="https://wofhrad.com" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all" style="color: #1565C0;">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Card 5 -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden border border-slate-100 card-hover reveal" style="transition-delay: 100ms;">
+                    <div class="overflow-hidden" style="height: 224px;">
+                        <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/7e5d1e76-d850-4eca-aef4-079c414c2381.jpg?resize=1536%2C2048&ssl=1" alt="Conflict Mitigation" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerpolicy="no-referrer">
+                    </div>
+                    <div class="p-8 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-4 inline-block w-fit" style="background: #E8F5E9; color: #2E7D32;">Multi-District</span>
+                        <h3 class="text-2xl font-bold mb-4" style="color: #0D2B6B;">Conflict Mitigation & Peace Building</h3>
+                        <p class="text-sm leading-relaxed mb-6 flex-grow text-slate-600">Active conflict prevention across Bombali, Karene, Freetown, Waterloo, Kono, and Pujehun — engaging communities in face-to-face peacebuilding dialogues.</p>
+                        <a href="https://wofhrad.com" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-sm group-hover:gap-4 transition-all" style="color: #1565C0;">Learn More <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                    </div>
+                </div>
+                <!-- Card 6 — Internship CTA -->
+                <div class="group flex flex-col h-full rounded-2xl overflow-hidden card-hover reveal" style="transition-delay: 200ms; background-color: #1565C0; color: white;">
+                    <div class="p-10 flex flex-col flex-grow">
+                        <span class="text-[10px] font-bold uppercase tracking-widest px-3 py-1 rounded-full mb-6 inline-block w-fit" style="background: rgba(255,255,255,0.2); color: white;">Opportunity</span>
+                        <h3 class="text-3xl font-bold mb-6">Internship Programme</h3>
+                        <p class="text-base leading-relaxed mb-10 flex-grow" style="color: rgba(255,255,255,0.8);">Join our mission. We welcome passionate individuals committed to human rights, gender equality, and democracy in Sierra Leone.</p>
+                        <a href="https://wofhrad.com/internship/" target="_blank" rel="noopener" class="flex items-center gap-2 font-bold text-lg group-hover:gap-4 transition-all" style="color: #F9A825;">Apply Now <i data-lucide="arrow-right" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Impact Section -->
+    <section id="impact" class="py-24 relative overflow-hidden" style="background-color: #0D2B6B;">
+        <div class="absolute top-0 right-0 w-96 h-96 rounded-full" style="background: #F9A825; filter: blur(150px); opacity: 0.1;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-xs font-bold tracking-widest uppercase mb-4 block" style="color: #F9A825;">Our Impact</span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-8">Changing Lives, <span style="color: #F9A825;">Changing Policies</span></h2>
+                <p class="text-lg leading-relaxed mb-10" style="color: rgba(255,255,255,0.7);">Two decades of persistent advocacy has moved the needle — from the halls of parliament to the safe spaces of rural communities.</p>
+                <div class="p-8 rounded-r-2xl mb-8" style="border-left: 4px solid #F9A825; background: rgba(255,255,255,0.05);">
+                    <p class="text-white italic text-xl">"After the 2018 elections, only 18 parliament members were female nationwide. In 2023, 41 female mandates were directly elected to parliament."</p>
+                </div>
+                <p class="text-sm font-bold italic" style="color: #F9A825;">* The Gender Equality and Women's Empowerment Act (GEWE Act, 2022) now mandates 30% female representation.</p>
+            </div>
+            <!-- BUG FIX: Removed duplicate "Districts Covered/Reached" stat cards -->
+            <div class="grid grid-cols-2 gap-6 reveal" style="transition-delay: 200ms;">
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">41</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">Women in Parliament (2023)</p>
+                </div>
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">30%</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">GEWE Act Mandate</p>
+                </div>
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">90</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">Girls' Safe Spaces</p>
+                </div>
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">2,250+</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">Girls Enrolled</p>
+                </div>
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">6</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">Districts Covered</p>
+                </div>
+                <div class="p-6 rounded-2xl border hover:transition-all group" style="background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.1);">
+                    <p class="text-3xl font-black mb-2" style="color: #F9A825;">18+</p><p class="text-[10px] font-bold uppercase tracking-wider" style="color: rgba(255,255,255,0.8);">Years of Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Team Section -->
+    <section id="team" class="py-24" style="background-color: #E3F2FD;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <span class="section-label">Our People</span>
+                <h2 class="text-4xl font-black" style="color: #0D2B6B;">Meet Our Team</h2>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8 mb-16">
+                <div class="bg-white rounded-2xl shadow-xl flex flex-col sm:flex-row items-center p-6 gap-8 reveal" style="border-top: 8px solid #1565C0;">
+                    <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/367450883_10160000640743353_2332763324850715175_n-edited.jpg?resize=674%2C674&ssl=1" alt="Isha Kanu-Moriba Alieu" class="w-40 h-40 rounded-2xl object-cover" referrerpolicy="no-referrer">
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-2xl font-bold mb-2" style="color: #0D2B6B;">Isha Kanu-Moriba Alieu</h3>
+                        <p class="font-bold uppercase text-xs tracking-widest" style="color: #2E7D32;">Executive Director & Founder</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-xl flex flex-col sm:flex-row items-center p-6 gap-8 reveal" style="border-top: 8px solid #1565C0; transition-delay: 100ms;">
+                    <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/394593174_312174251522795_5838466782395700686_n-1.jpg?resize=1024%2C993&ssl=1" alt="Emilia Kamara Jengo" class="w-40 h-40 rounded-2xl object-cover" referrerpolicy="no-referrer">
+                    <div class="text-center sm:text-left">
+                        <h3 class="text-2xl font-bold mb-2" style="color: #0D2B6B;">Emilia Kamara Jengo</h3>
+                        <p class="font-bold uppercase text-xs tracking-widest" style="color: #2E7D32;">Programmes Coordinator & Co-Founder</p>
+                    </div>
+                </div>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/cf8065c8-451a-44a4-82e3-09928e9cac55-edited.jpg?resize=907%2C907&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Kemoh Mansaray</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Chief Project Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/be4c76b7-d0f2-4787-a185-9b114f56d9a4-edited.jpg?resize=515%2C515&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Simeon Kargbo</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Finance & Admin</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/b876494f-cbf8-4907-b731-2ca9c950934b-edited.jpg?resize=576%2C576&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Bilkish S. Bangura</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Finance Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/4fa31d78-5299-42a2-86e0-29016f3c5214-edited.jpg?resize=715%2C715&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Mohamed Stevens</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Field Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/f7d1e88d-245e-4d8f-a652-4a3f4421f07e-edited.jpg?resize=567%2C567&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Fatima D. Kamara</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Project Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/adc14b41-a210-4ebc-813a-a4b63f64ccee-edited.jpg?resize=515%2C515&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Henrietta Bangura</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Project Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/c187cc53-97db-41d3-935c-314277dc0e0a-edited.jpg?resize=510%2C510&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Hannah Fofanah</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Finance Officer</p></div>
+                <div class="text-center reveal"><img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2026/01/WhatsApp-Image-2026-01-26-at-17.04.35-4.jpeg?resize=768%2C1024&ssl=1" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover shadow-md" style="border: 2px solid white;" referrerpolicy="no-referrer"><h4 class="font-bold text-sm">Kadijatu Jalloh</h4><p class="text-[10px] uppercase text-slate-500 font-bold">Acting MEAL Officer</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Challenges Section -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="section-label">The Context</span>
+                <h2 class="text-4xl font-black mb-8" style="color: #0D2B6B;">Challenges Women Face in Sierra Leone</h2>
+                <p class="text-slate-700 text-lg leading-relaxed mb-10">Many women continue to suffer marginalization and discrimination in education, employment, political participation, and social justice. Issues of unequal opportunity are exacerbated by early marriage and lack of land rights.</p>
+                <div class="space-y-6">
+                    <div class="flex gap-6 p-6 rounded-2xl" style="border-left: 4px solid #1565C0; background: rgba(227,242,253,0.3);">
+                        <div style="color: #1565C0;"><i data-lucide="scale"></i></div>
+                        <div><h3 class="text-xl font-bold mb-2">Political Exclusion</h3><p class="text-sm text-slate-600">Men often feel women should not hold leadership roles, leading to under-representation in parliament.</p></div>
+                    </div>
+                    <div class="flex gap-6 p-6 rounded-2xl" style="border-left: 4px solid #1565C0; background: rgba(227,242,253,0.3);">
+                        <div style="color: #1565C0;"><i data-lucide="book-open"></i></div>
+                        <div><h3 class="text-xl font-bold mb-2">Literacy & Education Gaps</h3><p class="text-sm text-slate-600">Low literacy and lack of quality education limit women's political and civic participation.</p></div>
+                    </div>
+                    <div class="flex gap-6 p-6 rounded-2xl" style="border-left: 4px solid #1565C0; background: rgba(227,242,253,0.3);">
+                        <div style="color: #1565C0;"><i data-lucide="shield"></i></div>
+                        <div><h3 class="text-xl font-bold mb-2">Gender-Based Violence</h3><p class="text-sm text-slate-600">Violence during elections is used to silence and discourage women from standing as candidates.</p></div>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <img src="https://i0.wp.com/wofhrad.com/wp-content/uploads/2023/11/397452249_319022500837970_6525977656962936825_n-edited.jpg?resize=996%2C560&ssl=1" class="rounded-2xl shadow-2xl w-full" alt="Women advocating for their rights" referrerpolicy="no-referrer">
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. Get Involved -->
+    <section id="get-involved" class="py-24 relative overflow-hidden text-center" style="background: linear-gradient(135deg, #1565C0, #0D2B6B);">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 30px 30px;"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <h2 class="text-4xl font-black text-white mb-16 reveal">Get Involved</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-10 rounded-3xl text-white flex flex-col h-full reveal" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                    <h3 class="text-2xl font-bold mb-6">Partner With Us</h3>
+                    <p class="leading-relaxed mb-10 flex-grow" style="color: rgba(255,255,255,0.8);">Collaborate on projects, programmes, and advocacy campaigns.</p>
+                    <a href="#contact" class="btn-pill btn-outline">Contact Us</a>
+                </div>
+                <div class="p-10 rounded-3xl text-white flex flex-col h-full reveal" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); transition-delay: 100ms;">
+                    <h3 class="text-2xl font-bold mb-6">Apply for Internship</h3>
+                    <p class="leading-relaxed mb-10 flex-grow" style="color: rgba(255,255,255,0.8);">Gain hands-on field experience in human rights and gender equality.</p>
+                    <a href="https://wofhrad.com/internship/" target="_blank" rel="noopener" class="btn-pill btn-outline">Learn More</a>
+                </div>
+                <div class="p-10 rounded-3xl text-white flex flex-col h-full reveal" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); transition-delay: 200ms;">
+                    <h3 class="text-2xl font-bold mb-6">Stay Informed</h3>
+                    <p class="leading-relaxed mb-10 flex-grow" style="color: rgba(255,255,255,0.8);">Subscribe to our newsletter for updates on women's rights in Sierra Leone.</p>
+                    <a href="https://wofhrad.com/sign-up-for-the-newsletter/" target="_blank" rel="noopener" class="btn-pill btn-outline">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. Contact Section -->
+    <section id="contact" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-16">
+            <div class="reveal">
+                <span class="section-label">Contact Us</span>
+                <h2 class="text-4xl font-black mb-8" style="color: #0D2B6B;">Let's Work Together</h2>
+                <div class="space-y-8 mb-12">
+                    <div class="flex gap-6">
+                        <div class="p-4 rounded-2xl shrink-0" style="background: #E3F2FD; color: #1565C0;"><i data-lucide="map-pin"></i></div>
+                        <div><h4 class="font-bold">Office</h4><p class="text-slate-600">17 Frontier Road, Makeni, Sierra Leone</p></div>
+                    </div>
+                    <!-- BUG FIX: Replaced Cloudflare-mangled email with plain email -->
+                    <div class="flex gap-6">
+                        <div class="p-4 rounded-2xl shrink-0" style="background: #E8F5E9; color: #2E7D32;"><i data-lucide="mail"></i></div>
+                        <div><h4 class="font-bold">Email</h4><p class="text-slate-600"><a href="mailto:info@wofhrad.com" class="hover:underline" style="color: #1565C0;">info@wofhrad.com</a></p></div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="p-4 rounded-2xl shrink-0" style="background: rgba(249,168,37,0.1); color: #F9A825;"><i data-lucide="phone"></i></div>
+                        <div><h4 class="font-bold">Call</h4><p class="text-slate-600">+232 76 335 749</p></div>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <a href="https://www.facebook.com/wofhrad" target="_blank" rel="noopener" aria-label="Facebook" class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-white transition-all" style="background: #f1f5f9;" onmouseover="this.style.background='#1565C0'; this.style.color='white';" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569';"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/wofhrad" target="_blank" rel="noopener" aria-label="Instagram" class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-white transition-all" style="background: #f1f5f9;" onmouseover="this.style.background='#1565C0'; this.style.color='white';" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569';"><i data-lucide="instagram"></i></a>
+                    <a href="https://twitter.com/wofhrad" target="_blank" rel="noopener" aria-label="Twitter/X" class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:text-white transition-all" style="background: #f1f5f9;" onmouseover="this.style.background='#1565C0'; this.style.color='white';" onmouseout="this.style.background='#f1f5f9'; this.style.color='#475569';"><i data-lucide="twitter"></i></a>
+                </div>
+            </div>
+            <div class="p-10 rounded-3xl border border-slate-100 reveal" style="background: rgba(227,242,253,0.3); transition-delay: 200ms;">
+                <form id="contact-form" class="space-y-6">
+                    <input type="text" id="form-name" class="w-full px-4 py-3 rounded-xl border outline-none bg-white" style="border-color: #e2e8f0;" onfocus="this.style.boxShadow='0 0 0 3px rgba(21,101,192,0.2)'; this.style.borderColor='#1565C0';" onblur="this.style.boxShadow='none'; this.style.borderColor='#e2e8f0';" placeholder="Full Name" required>
+                    <input type="email" id="form-email" class="w-full px-4 py-3 rounded-xl border outline-none bg-white" style="border-color: #e2e8f0;" onfocus="this.style.boxShadow='0 0 0 3px rgba(21,101,192,0.2)'; this.style.borderColor='#1565C0';" onblur="this.style.boxShadow='none'; this.style.borderColor='#e2e8f0';" placeholder="Email Address" required>
+                    <textarea rows="5" id="form-message" class="w-full px-4 py-3 rounded-xl border outline-none bg-white" style="border-color: #e2e8f0;" onfocus="this.style.boxShadow='0 0 0 3px rgba(21,101,192,0.2)'; this.style.borderColor='#1565C0';" onblur="this.style.boxShadow='none'; this.style.borderColor='#e2e8f0';" placeholder="Message" required></textarea>
+                    <button type="submit" class="btn-pill btn-primary w-full">Send Message</button>
+                    <!-- BUG FIX: Completed the truncated formStatus logic -->
+                    <p id="form-status" class="text-center text-sm font-bold hidden" style="color: #2E7D32;">✓ Message sent successfully! We'll be in touch soon.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 11. Footer -->
+    <footer class="pt-20 pb-10" style="background-color: #0D2B6B; color: rgba(255,255,255,0.6);">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <h2 class="text-xl font-bold text-white mb-4" style="font-family: 'DM Sans', sans-serif;">WOFHRAD-SL</h2>
+                    <p class="text-sm italic">Promoting justice and inclusive governance since 2006.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs">Who We Are</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-white transition-colors">Our Mission</a></li>
+                        <li><a href="#team" class="hover:text-white transition-colors">Our Team</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs">Programs</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#programs" class="hover:text-white transition-colors">Empowerment</a></li>
+                        <li><a href="#programs" class="hover:text-white transition-colors">Peacebuilding</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4 uppercase text-xs">Get Involved</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#contact" class="hover:text-white transition-colors">Partner</a></li>
+                        <li><a href="#get-involved" class="hover:text-white transition-colors">Internships</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 text-center text-[10px] uppercase font-bold" style="border-top: 1px solid rgba(255,255,255,0.1);">
+                <p>© 2026 WOFHRAD-SL. All Rights Reserved. · 17 Frontier Road, Makeni, Sierra Leone</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Initialize Lucide Icons
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        // 2. Navbar Scroll Effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.style.boxShadow = '0 4px 12px rgba(0,0,0,0.1)';
+                navbar.style.paddingTop = '0.5rem';
+                navbar.style.paddingBottom = '0.5rem';
+                navbar.style.borderBottom = '1px solid #1565C0';
+            } else {
+                navbar.style.boxShadow = 'none';
+                navbar.style.paddingTop = '1rem';
+                navbar.style.paddingBottom = '1rem';
+                navbar.style.borderBottom = 'none';
+            }
+        });
+
+        // 3. Mobile Menu Toggle
+        function closeMobileMenu() {
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // 4. Scroll Reveal Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // 5. Contact Form Submission — BUG FIX: completed truncated form handler
+        const contactForm = document.getElementById('contact-form');
+        const formStatus = document.getElementById('form-status');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const name = document.getElementById('form-name').value.trim();
+                const email = document.getElementById('form-email').value.trim();
+                const message = document.getElementById('form-message').value.trim();
+
+                if (!name || !email || !message) return;
+
+                // Show success message and reset form
+                formStatus.classList.remove('hidden');
+                contactForm.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    formStatus.classList.add('hidden');
+                }, 5000);
+            });
+        }
+    </script>
+</body>
+</html>
